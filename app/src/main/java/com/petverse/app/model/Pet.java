@@ -184,7 +184,7 @@ public class Pet {
 
     public void sleep ( double sleepTime, int energyPerHour, int hungerBoostPerHour ){
         setEnergy(Math.max(0, Math.min(100, getEnergy() + (int)(energyPerHour * sleepTime))));
-        setHunger(Math.max(0, Math.min(100, getEnergy() + (int)(hungerBoostPerHour * sleepTime))));
+        setHunger(Math.max(0, Math.min(100, getHunger() + (int)(hungerBoostPerHour * sleepTime))));
     }
 }
 // En esta arquitectura por capas es válido que la entidad contenga métodos

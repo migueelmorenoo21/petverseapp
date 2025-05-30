@@ -54,14 +54,24 @@ public class PetService {
         }
     }
 
-    public Pet sleepPet ( UUID petId, double sleepTime, int energyPerHour, int hungerBoostPerHour) {
+    public Pet sleepPet(UUID petId, double sleepTime, int energyPerHour, int hungerBoostPerHour) {
         Pet pet = getPetOrThrow(petId);
 
-        if(pet.getEnergy() >= 100){
-            throw new IllegalStateException("Su mascota esta lo suficientemente descansada");
+        System.out.println("🐾 Antes de dormir:");
+        System.out.println("Energy: " + pet.getEnergy() + ", Hunger: " + pet.getHunger());
+        System.out.println("Recibido → sleepTime: " + sleepTime + ", energyPerHour: " + energyPerHour + ", hungerBoostPerHour: " + hungerBoostPerHour);
+
+        if (pet.getEnergy() >= 100) {
+            throw new IllegalStateException("Su mascota está lo suficientemente descansada");
         } else {
             pet.sleep(sleepTime, energyPerHour, hungerBoostPerHour);
-            return petRepository.save(pet);
+            Pet updatedPet = petRepository.save(pet);
+
+            System.out.println("🛌 Después de dormir:");
+            System.out.println("Energy: " + updatedPet.getEnergy() + ", Hunger: " + updatedPet.getHunger());
+
+            return updatedPet;
         }
     }
+
 }

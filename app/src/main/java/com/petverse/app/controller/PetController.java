@@ -73,7 +73,7 @@ public class PetController {
             @PathVariable UUID petId,
             @RequestBody SleepRequest request
             ){
-        Pet updated = petService.sleepPet(petId, 1, 2, 3);
+        Pet updated = petService.sleepPet( petId, request.getSleepTime(), request.getEnergyPerHour(), 3);
         return ResponseEntity.ok( new SleepResponse(
                 updated.getEnergy(),
                 updated.getHunger(),
